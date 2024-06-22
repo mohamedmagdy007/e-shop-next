@@ -32,24 +32,6 @@ export default function Form() {
       .then(() => {
         router.push("/");
       });
-    // try {
-    //   const response = await fetch("http://localhost:3001/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw await response.json();
-    //   }
-    //   const responseData = await response.json();
-    //   Cookies.set("userInfo", JSON.stringify(responseData));
-    //
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <form

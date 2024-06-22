@@ -80,26 +80,46 @@
       "role": "admin"
     },
     {
-      "username": "mohamed.magdy",
-      "email": "mohamed.magdy4980@gmail.com",
-      "password": "123456",
-      "confirmPassword": "123456",
-      "id": 2
-    },
-    {
-      "username": "mohamed.magdy",
-      "email": "test750@gmail.com",
-      "password": "123456",
-      "confirmPassword": "123456",
-      "id": 3
-    },
-    {
       "email": "mohamed@gmail.com",
       "password": "$2a$10$gcjvUTAAwniha2sjwopxIO.nCVO.mlEfG88zwSGnYJ0VN7vxTvVdq",
       "username": "mohamed.magdy",
       "confirmPassword": "123456",
       "id": 4
+    },
+    {
+      "email": "ahmed@gmail.com",
+      "password": "$2a$10$J7v8CeNo.Nrl8tbTEKKPt.HU4MZdAOf78a9V2vLvD36wW85nM7rWy",
+      "username": "ahmed",
+      "confirmPassword": "123456",
+      "id": 5
+    },
+    {
+      "email": "ahmed3@gmail.com",
+      "password": "$2a$10$UO2twz3Wdv9ZYHjSMUrQN.bxUPr8sa../J4BXgX0ZPEhhJHVYuzoa",
+      "username": "ahmed3",
+      "confirmPassword": "123456",
+      "id": 6
+    },
+    {
+      "email": "ahmed43@gmail.com",
+      "password": "$2a$10$LSExlv2NQ2twHZQLdB7lHeftEpWyLVmjjD906Cz9hqcq/Sg8Xc2de",
+      "username": "ahmed7",
+      "confirmPassword": "123456",
+      "id": 7
+    },
+    {
+      "email": "ahmed733@gmail.com",
+      "password": "$2a$10$A44r9BlY0Nfvurj9i5rqwOXONTcfD.qgk8XN7qQt5A8vwLJ.6bUC6",
+      "username": "ahmed733",
+      "confirmPassword": "123456",
+      "id": 8
     }
   ],
-  "wishlist": []
+  "wishlist": [
+    {
+      "userId": 1,
+      "productId": 2,
+      "id": 1
+    }
+  ]
 }

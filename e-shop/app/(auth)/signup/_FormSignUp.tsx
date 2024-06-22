@@ -1,9 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Cookies from "js-cookie";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
+import actAuthRegister from "@/lib/store/auth/actAuthRegister";
+import { LoaderCircle } from "lucide-react";
+import Link from "next/link";
 type Inputs = {
   username: string;
   email: string;
@@ -21,6 +24,8 @@ const schema = yup.object().shape({
     .oneOf([yup.ref("password")], "Passwords must match"),
 });
 export default function Form() {
+  const dispatch = useAppDispatch();
+  const { error, loading } = useAppSelector((state) => state.auth);
   const router = useRouter();
   const {
     register,
@@ -28,24 +33,11 @@ export default function Form() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      const response = await fetch("http://localhost:3001/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+    dispatch(actAuthRegister(data))
+      .unwrap()
+      .then(() => {
+        router.push("/");
       });
-
-      if (!response.ok) {
-        throw await response.json();
-      }
-      const responseData = await response.json();
-      Cookies.set("userInfo", JSON.stringify(responseData));
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
   };
   return (
     <form
@@ -193,18 +185,28 @@ export default function Form() {
       <div className="flex items-center justify-between">
         <p className="text-sm text-gray-500">
           Already have an account?
-          <a className="underline" href="#">
+          <Link className="underline" href="/">
             Login
-          </a>
+          </Link>
         </p>
 
         <button
           type="submit"
           className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white"
+          disabled={loading === "pending"}
         >
-          Sign Up
+          {loading === "pending" ? (
+            <span className="flex items-center">
+              <LoaderCircle className="animate-spin  mr-1" /> loading
+            </span>
+          ) : (
+            "Sign Up"
+          )}
         </button>
       </div>
+      {error && (
+        <div className="bg-red-900 text-gray-100 rounded-md p-4">{error}</div>
+      )}
     </form>
   );
 }

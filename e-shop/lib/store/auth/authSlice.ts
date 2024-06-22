@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actAuthLogin from "./actAuthLogin";
-import actAuthRegister from "./actAuthRegister";
 type TLoading = "idle" | "pending" | "succeeded" | "failed";
 import Cookies from "js-cookie";
-// import actAuthRegister from "./actAuthRegister";
-// import actAuthLogin from "./actAuthLogin";
+import actAuthRegister from "./actAuthRegister";
 
 interface IAuthState {
   user: {
@@ -45,8 +43,10 @@ const authSlice = createSlice({
       state.loading = "pending";
       state.error = null;
     });
-    builder.addCase(actAuthRegister.fulfilled, (state) => {
+    builder.addCase(actAuthRegister.fulfilled, (state, action) => {
       state.loading = "succeeded";
+      state.accessToken = action.payload.accessToken;
+      state.user = action.payload.user;
     });
     builder.addCase(actAuthRegister.rejected, (state, action) => {
       state.loading = "failed";

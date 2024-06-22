@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 type TFormData = {
-  name: string;
+  username: string;
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
 const actAuthRegister = createAsyncThunk(
@@ -12,7 +13,7 @@ const actAuthRegister = createAsyncThunk(
     const { rejectWithValue } = thunk;
 
     try {
-      const response = await fetch("http://localhost:5005/users", {
+      const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
